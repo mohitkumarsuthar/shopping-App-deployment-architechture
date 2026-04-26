@@ -24,11 +24,10 @@ pipeline {
                 withSonarQubeEnv('sonarqube') {
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=shopping-app \
+                        -Dsonar.projectKey=Shopping-App \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=http://13.127.110.198:9000
-                        -Dsonar.token=$SONAR_AUTH_TOKEN \
-                        -Dsonar.exclusions=**/node_modules/**,**/terraform/**
+                        -Dsonar.host.url=http://13.127.110.198:9000 \
+                        -Dsonar.login=sqp_f66bae27cc7d590a352b6efd3ca744b5a26c3af6
                     '''
                 }
             }
