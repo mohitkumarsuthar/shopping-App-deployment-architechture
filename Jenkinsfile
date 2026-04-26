@@ -27,6 +27,8 @@ pipeline {
                         -Dsonar.projectKey=shopping-app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://13.127.110.198:9000
+                        -Dsonar.token=$SONAR_AUTH_TOKEN \
+                        -Dsonar.exclusions=**/node_modules/**,**/terraform/**
                     '''
                 }
             }
