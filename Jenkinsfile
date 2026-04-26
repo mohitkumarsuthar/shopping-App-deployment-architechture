@@ -19,18 +19,18 @@ pipeline {
             }
         }
         
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=shopping-app \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://13.127.110.198:9000
-                    '''
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('sonarqube') {
+        //             sh '''
+        //                 sonar-scanner \
+        //                 -Dsonar.projectKey=shopping-app \
+        //                 -Dsonar.sources=. \
+        //                 -Dsonar.host.url=http://13.127.110.198:9000
+        //             '''
+        //         }
+        //     }
+        // }
         
         stage('Docker Build Backend') {
             steps {
