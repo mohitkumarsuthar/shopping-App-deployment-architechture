@@ -11,7 +11,7 @@ resource "aws_db_instance" "shopping_db" {
   identifier             = "shopping-db"
   engine                 = "postgres"
   engine_version         = "15.4"
-  instance_class         = "db.t3.micro"
+  instance_class         = "db.t4g.micro"
   allocated_storage      = 20
   db_name                = var.db_name
   username               = var.db_username
