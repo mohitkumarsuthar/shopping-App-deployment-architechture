@@ -25,10 +25,10 @@ pipeline {
                 withSonarQubeEnv('sonarqube') {
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=shopping-app \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://65.1.64.21:9000 \
-                        -Dsonar.login=sqp_66e11f9c448e91f6bebc907c49b25fcbd949fafd
+                          -Dsonar.projectKey=sonarqube \
+                          -Dsonar.sources=. \
+                          -Dsonar.host.url=http://65.1.64.21:9000 \
+                          -Dsonar.login=sqp_66e11f9c448e91f6bebc907c49b25fcbd949fafd
                     '''
                 }
             }
