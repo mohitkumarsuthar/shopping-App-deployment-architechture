@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    tools {
-        sonarQubeScanner 'sonar-scanner'  // ← yeh add karo
-    }
+    // tools {
+    //     sonarQubeScanner 'sonar-scanner'  // ← yeh add karo
+    // }
     
     environment {
         DOCKER_IMAGE_BACKEND = "mohit7742/shopping-backend"
