@@ -25,7 +25,7 @@ pipeline {
                         -Dsonar.projectKey=Shopping-App \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://65.1.64.21:9000 \
-                        -Dsonar.login=sqp_ea5da3fcfb2b8f67da3513fd350b1b1418119f75
+                        -Dsonar.login=sqp_66e11f9c448e91f6bebc907c49b25fcbd949fafd
 
                     '''
                 }
