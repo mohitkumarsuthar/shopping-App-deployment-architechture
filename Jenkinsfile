@@ -87,6 +87,9 @@ pipeline {
 
                     docker stop shopping-frontend || true
                     docker rm shopping-frontend || true
+                    
+                    echo "🧹 Removing unused images (safe cleanup)..."
+                    docker image prune -a -f
 
                     echo "🚀 Starting new containers..."
 
