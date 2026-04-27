@@ -9,6 +9,9 @@ RUN npm install
 
 COPY . .
 
+ENV DATABASE_URL=postgresql://postgres:admin123@13.201.53.77:5432/shopdb
+ENV JWT_SECRET=mysecretkey123
+
 EXPOSE 5000
 
 CMD ["npm", "start"]
