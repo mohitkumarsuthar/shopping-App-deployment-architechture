@@ -1,14 +1,17 @@
 pipeline {
     agent any
-
+    tools {
+        sonarQubeScanner 'sonar-scanner'  // ← yeh add karo
+    }
+    
     environment {
         DOCKER_IMAGE_BACKEND = "mohit7742/shopping-backend"
         DOCKER_IMAGE_FRONTEND = "mohit7742/shopping-frontend"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
-
+    
     stages {
-
+        
         stage('Git Checkout') {
             steps {
                 git branch: 'main',
@@ -16,22 +19,21 @@ pipeline {
                 url: 'https://github.com/mohitkumarsuthar/shopping-App-deployment-architechture.git'
             }
         }
-
+        
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=Shopping-App \
+                        -Dsonar.projectKey=shopping-app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://65.1.64.21:9000 \
                         -Dsonar.login=sqp_66e11f9c448e91f6bebc907c49b25fcbd949fafd
-
                     '''
                 }
             }
         }
-
+        
         stage('Docker Build Backend') {
             steps {
                 sh '''
@@ -40,7 +42,7 @@ pipeline {
                 '''
             }
         }
-
+        
         stage('Docker Build Frontend') {
             steps {
                 sh '''
@@ -49,19 +51,19 @@ pipeline {
                 '''
             }
         }
-
+        
         stage('Trivy Scan Backend') {
             steps {
                 sh 'trivy image ${DOCKER_IMAGE_BACKEND}:${DOCKER_TAG}'
             }
         }
-
+        
         stage('Trivy Scan Frontend') {
             steps {
                 sh 'trivy image ${DOCKER_IMAGE_FRONTEND}:${DOCKER_TAG}'
             }
         }
-
+        
         stage('Push to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
@@ -77,7 +79,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Deploy to EC2') {
             steps {
                 sh '''
@@ -107,7 +109,7 @@ pipeline {
             }
         }
     }
-
+    
     post {
         success {
             echo '✅ Pipeline Successful! App is Live!'
