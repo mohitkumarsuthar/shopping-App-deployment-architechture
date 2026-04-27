@@ -1,16 +1,14 @@
 pipeline {
     agent any
-    // tools {
-    //     sonarQubeScanner 'sonar-scanner'  // ← yeh add karo
-    // }
+
     environment {
         DOCKER_IMAGE_BACKEND = "mohit7742/shopping-backend"
         DOCKER_IMAGE_FRONTEND = "mohit7742/shopping-frontend"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
-    
+
     stages {
-        
+
         stage('Git Checkout') {
             steps {
                 git branch: 'main',
@@ -18,7 +16,7 @@ pipeline {
                 url: 'https://github.com/mohitkumarsuthar/shopping-App-deployment-architechture.git'
             }
         }
-        
+
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
@@ -27,12 +25,12 @@ pipeline {
                         -Dsonar.projectKey=sonarqube \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://13.201.53.77:9000 \
-                        -Dsonar.login=sqp_ea5da3fcfb2b8f67da3513fd350b1b1418119f75
+                        -Dsonar.login=YOUR_TOKEN_HERE
                     '''
                 }
             }
         }
-        
+
         stage('Docker Build Backend') {
             steps {
                 sh '''
@@ -41,7 +39,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Docker Build Frontend') {
             steps {
                 sh '''
@@ -50,19 +48,19 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Trivy Scan Backend') {
             steps {
                 sh 'trivy image ${DOCKER_IMAGE_BACKEND}:${DOCKER_TAG}'
             }
         }
-        
+
         stage('Trivy Scan Frontend') {
             steps {
                 sh 'trivy image ${DOCKER_IMAGE_FRONTEND}:${DOCKER_TAG}'
             }
         }
-        
+
         stage('Push to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
@@ -78,21 +76,25 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Deploy to EC2') {
             steps {
                 sh '''
-                    # Backend
+                    echo "🧹 Removing old containers..."
+
                     docker stop shopping-backend || true
                     docker rm shopping-backend || true
+
+                    docker stop shopping-frontend || true
+                    docker rm shopping-frontend || true
+
+                    echo "🚀 Starting new containers..."
+
                     docker run -d \
                         --name shopping-backend \
                         -p 5000:5000 \
                         ${DOCKER_IMAGE_BACKEND}:${DOCKER_TAG}
-                    
-                    # Frontend
-                    docker stop shopping-frontend || true
-                    docker rm shopping-frontend || true
+
                     docker run -d \
                         --name shopping-frontend \
                         -p 80:80 \
@@ -101,7 +103,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         success {
             echo '✅ Pipeline Successful! App is Live!'
