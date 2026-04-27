@@ -4,8 +4,8 @@ pipeline {
     //     sonarQubeScanner 'sonar-scanner'  // ← yeh add karo
     // }
     environment {
-        DOCKER_IMAGE_BACKEND = "mohitkumarsuthar/shopping-backend"
-        DOCKER_IMAGE_FRONTEND = "mohitkumarsuthar/shopping-frontend"
+        DOCKER_IMAGE_BACKEND = "mohit7742/shopping-backend"
+        DOCKER_IMAGE_FRONTEND = "mohit7742/shopping-frontend"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
     
