@@ -8,6 +8,17 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+ENV PORT=5000
+
+ENV RAZORPAY_KEY_ID=your_razorpay_key_id
+ENV RAZORPAY_KEY_SECRET=your_razorpay_secret
+
+ENV <h2 id="usage">Usage</h2>
+ENV CLOUDINARY_CLOUD_NAME=dummy
+ENV CLOUDINARY_API_KEY=dummy
+ENV CLOUDINARY_API_SECRET=dummy
+ENV VITE_API_BASE_URL=http://localhost:5000
+ENV VITE_BACKEND_URL=http://localhost:5000
 
 ENV DATABASE_URL=postgresql://postgres:admin123@65.1.64.21/:5432/shopdb
 ENV JWT_SECRET=mysecretkey123
