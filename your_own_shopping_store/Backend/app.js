@@ -20,9 +20,9 @@ const app = express()
 
 // Allowed frontend origins
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:3000",
+  "http://13.126.215.48:5173",
+  "http://13.126.215.48/:5174",
+  "http://13.126.215.48:3000",
   "https://yourownshoppingstore.netlify.app",
 ]
 
