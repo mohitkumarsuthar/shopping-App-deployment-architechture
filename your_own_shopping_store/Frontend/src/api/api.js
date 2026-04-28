@@ -4,7 +4,7 @@ import axios from "axios"
 //   import.meta.env.MODE === "development"
 //     ? import.meta.env.VITE_API_BASE_URL
 //     : import.meta.env.VITE_BACKEND_URL
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "http://13.126.215.48:5000"
     console.log("BASE_URL being used:", BASE_URL, "| mode:", import.meta.env.MODE)
 
 const API = axios.create({
