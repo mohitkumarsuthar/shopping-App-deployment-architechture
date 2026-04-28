@@ -6,7 +6,7 @@ dotenv.config();
 
 // Hardcode fallback - temp fix
 const DATABASE_URL = process.env.DATABASE_URL || 
-  "postgresql://dbadmin:Shopping#123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb";
+  "postgresql://dbadmin:Shopping%23123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb";
 
 console.log("DATABASE_URL:", DATABASE_URL);
 
