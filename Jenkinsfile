@@ -100,7 +100,6 @@ pipeline {
                         --name shopping-backend \
                         --env-file /home/ubuntu/backend.env \
                         -p 5000:5000 \
-                        --env-file /home/ubuntu/backend.env \
                         ${DOCKER_IMAGE_BACKEND}:${DOCKER_TAG}
 
                     docker run -d \
