@@ -5,12 +5,12 @@ RUN npm install
 COPY . .
 
 ENV PORT=5000
+ENV DATABASE_URL=postgresql://dbadmin:Shopping#123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb
 ENV DB_HOST=shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com
 ENV DB_PORT=5432
 ENV DB_NAME=shoppingdb
 ENV DB_USER=dbadmin
 ENV DB_PASSWORD=Shopping#123
-ENV DATABASE_URL=postgresql://dbadmin:Shopping#123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb
 ENV JWT_SECRET=mysecretkey123
 ENV RAZORPAY_KEY_ID=your_razorpay_key_id
 ENV RAZORPAY_KEY_SECRET=your_razorpay_secret
