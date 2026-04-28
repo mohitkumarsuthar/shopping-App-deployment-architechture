@@ -14,7 +14,7 @@ import adminSetupRoute from "./src/routes/adminSetupRoute.js"
 import path from "path"
 import { fileURLToPath } from "url"
 
-dotenv.config()
+dotenv.config({ override: false })
 
 const app = express()
 
