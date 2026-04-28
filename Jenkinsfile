@@ -98,13 +98,13 @@ pipeline {
 
                     docker run -d \
                         --name shopping-backend \
-                        --env-file /home/ubuntu/backend.env \
+                        --env-file /var/lib/jenkins/backend.env \
                         -p 5000:5000 \
                         ${DOCKER_IMAGE_BACKEND}:${DOCKER_TAG}
 
                     docker run -d \
                         --name shopping-frontend \
-                        --env-file /home/ubuntu/frontend.env \
+                        --env-file /var/lib/jenkins/frontend.env \
                         -p 80:80 \
                         ${DOCKER_IMAGE_FRONTEND}:${DOCKER_TAG}
                 '''
