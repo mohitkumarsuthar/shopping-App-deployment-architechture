@@ -13,9 +13,7 @@ RUN npm run build
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-ENV VITE_API_URL=http://localhost:5000
-ENV VITE_BASE_URL=http://localhost:5000
-ENV BASE_URL=http://localhost:5000
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
