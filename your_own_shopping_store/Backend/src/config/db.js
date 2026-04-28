@@ -2,9 +2,15 @@ import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import pg from "pg";
 
-dotenv.config()
-console.log(process.env.DATABASE_URL)
-export const sequelize = new Sequelize(process.env.DATABASE_URL, {
+dotenv.config();
+
+// Hardcode fallback - temp fix
+const DATABASE_URL = process.env.DATABASE_URL || 
+  "postgresql://dbadmin:Shopping#123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb";
+
+console.log("DATABASE_URL:", DATABASE_URL);
+
+export const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
   dialectModule: pg,
   logging: false,
