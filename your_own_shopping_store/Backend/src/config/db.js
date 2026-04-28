@@ -10,11 +10,18 @@ const DATABASE_URL = process.env.DATABASE_URL ||
 
 console.log("DATABASE_URL:", DATABASE_URL);
 
-export const sequelize = new Sequelize(DATABASE_URL, {
-  dialect: "postgres",
-  dialectModule: pg,
-  logging: false,
-});
+export const sequelize = new Sequelize(
+  "shoppingdb",
+  "dbadmin",
+  "Shopping#123",
+  {
+    host: "shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com",
+    dialect: "postgres",
+    port: 5432,
+    dialectModule: pg,
+    logging: false,
+  }
+);
 
 export const connectDB = async () => {
   try {
