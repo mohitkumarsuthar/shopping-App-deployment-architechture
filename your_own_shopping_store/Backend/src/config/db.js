@@ -20,6 +20,12 @@ export const sequelize = new Sequelize(
     port: 5432,
     dialectModule: pg,
     logging: false,
+    dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // important for AWS RDS
+    },
+  },
   }
 );
 
