@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import pg from "pg";
 
 dotenv.config()
-
+console.log(process.env.DATABASE_URL)
 export const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   dialectModule: pg,
