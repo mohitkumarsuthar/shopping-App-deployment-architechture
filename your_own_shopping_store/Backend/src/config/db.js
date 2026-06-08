@@ -6,7 +6,7 @@ dotenv.config();
 
 // Hardcode fallback - temp fix
 const DATABASE_URL = process.env.DATABASE_URL || 
-  "postgresql://dbadmin:Shopping%23123@shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com:5432/shoppingdb";
+  "postgresql:";
 
 console.log("DATABASE_URL:", DATABASE_URL);
 
@@ -15,7 +15,7 @@ export const sequelize = new Sequelize(
   "dbadmin",
   "Shopping#123",
   {
-    host: "shopping-db.crcey428275y.ap-south-1.rds.amazonaws.com",
+    host: "ws.com",
     dialect: "postgres",
     port: 5432,
     dialectModule: pg,
